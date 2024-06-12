@@ -11,4 +11,3 @@ class Refer::ReferralTest < ActiveSupport::TestCase
     assert_equal refer_referral_codes(:one), refer_referrals(:one).referral_code
   end
 end
-
