@@ -42,7 +42,7 @@ user.referral_codes.create(code: "chris")
 To customize the referral code generator:
 
 ```ruby
-Refer.code_generator = ->(referrer) { [id, SecureRandom.alphanumeric(8).join("-") }
+Refer.code_generator = ->(referrer) { [id, SecureRandom.alphanumeric(8)].join("-") }
 #=> generates codes like "1-7frb5fUw"
 ```
 
