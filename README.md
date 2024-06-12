@@ -1,6 +1,6 @@
 # Refer
 
-Referral codes for Ruby on Rails applications.
+Referral codes and affiliate links for Ruby on Rails applications.
 
 ## 📦 Installation
 Add this line to your application's Gemfile:
@@ -14,9 +14,15 @@ And then execute:
 $ bundle
 ```
 
+Add Refer to your controllers to store referral cookies:
+```bash
+bin/rails generate refer:install
+```
+
 And add Refer to your model:
 ```bash
 bin/rails generate refer:model User
+bin/rails db:migrate
 ```
 
 ## 🧑‍💻 Usage
@@ -54,7 +60,15 @@ To track users, we need to stash the referral code in a cookie when present. By 
 
 ```ruby
 class ApplicationController < ActionController::Base
-  before_action :set_refer_cookie
+  set_referral_cookie
+end
+```
+
+Move `set_referral_cookie` to specific controllers if you'd only like cookies set in certain areas like marketing pages for example.
+
+```ruby
+class MarketingController < ActionController::Base
+  set_referral_cookie except: [:about_us]
 end
 ```
 

@@ -1,0 +1,8 @@
+Description:
+    Adds Refer to ApplicationController to set referral cookies
+
+Example:
+    bin/rails generate refer:install
+
+    This will add `sets_refer_cookie` to the ApplicationController class.
+

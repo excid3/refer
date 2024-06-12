@@ -1,8 +1,7 @@
 Description:
-    Explain the generator
+    Adds Refer associations to a model
 
 Example:
-    bin/rails generate model Thing
+    bin/rails generate refer:model User
 
-    This will create:
-        what/will/it/create
+    This will add `has_referrals` to the User class.

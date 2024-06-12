@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors     = [ "Chris Oliver" ]
   spec.email       = [ "excid3@gmail.com" ]
   spec.homepage    = "https://github.com/excid3/refer"
-  spec.summary     = "Referral codes for Ruby on Rails apps"
-  spec.description = "Referral codes for Ruby on Rails apps"
+  spec.summary     = "Referral codes & affiliate links for Ruby on Rails apps"
+  spec.description = "Referral codes & affiliate links for Ruby on Rails apps"
   spec.license     = "MIT"
 
   spec.metadata["homepage_uri"] = spec.homepage
