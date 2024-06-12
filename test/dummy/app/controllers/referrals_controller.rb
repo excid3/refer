@@ -1,6 +1,6 @@
 class ReferralsController < ApplicationController
   before_action :set_refer_cookie
-  before_action :set_user, only: [:create]
+  before_action :set_user, only: [ :create ]
 
   def show
     head :ok
