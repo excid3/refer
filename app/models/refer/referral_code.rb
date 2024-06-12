@@ -1,7 +1,7 @@
 module Refer
   class ReferralCode < ApplicationRecord
     belongs_to :referrer, polymorphic: true
-    has_many :referrals
+    has_many :referrals, dependent: :nullify
 
     validates :code, presence: true, uniqueness: true
 

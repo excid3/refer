@@ -3,3 +3,4 @@
 one:
   referrer: one (User)
   referee: two (User)
+  referral_code: one

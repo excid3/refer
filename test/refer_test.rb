@@ -32,6 +32,10 @@ class ReferTest < ActiveSupport::TestCase
     assert_not Refer.referred?(users(:new))
   end
 
+  test "referral_codes" do
+    assert_includes users(:one).referral_codes, refer_referral_codes(:one)
+  end
+
   test "referrals" do
     assert_includes users(:one).referrals, refer_referrals(:one)
   end
