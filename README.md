@@ -2,7 +2,7 @@
 
 Referral codes for Ruby on Rails applications.
 
-## Installation
+## 📦 Installation
 Add this line to your application's Gemfile:
 
 ```ruby
@@ -19,7 +19,7 @@ And add Refer to your model:
 bin/rails generate refer:model User
 ```
 
-## Usage
+## 🧑‍💻 Usage
 
 Refer adds a models to your Rails application for tracking referrals and referral codes.
 
@@ -126,8 +126,23 @@ To access a user's referrer, you can use `referrer`:
 user.referrer #=> User that referred this User
 ```
 
-## Contributing
+## Providing Referral Rewards
+
+There are several common ways of handling rewards for successful referrals:
+
+* Immediate rewards
+When the referral is successfully created, you can immediately credit the referrer with their reward.
+
+* Reward after user actions
+You can check if a user was referred after they complete the action and provide a reward to the referrer.
+
+* Time-based rewards
+To provide a reward X days after a successful referral, you can use a schedule job to check for referrals X days ago and provide rewards to those referrers.
+
+We recommend keeping records for each reward given to a referral so you can limit rewards.
+
+## 🙏 Contributing
 If you have an issue you'd like to submit, please do so using the issue tracker in GitHub. In order for us to help you in the best way possible, please be as detailed as you can.
 
-## License
+## 📝 License
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
