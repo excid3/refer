@@ -103,6 +103,29 @@ Refer.referred?(user)
 #=> true/false
 ```
 
+##### Accessing Referrals
+
+To access a user's referrals, you can use the `referrals` association:
+
+```ruby
+user.referrals #=> [Refer::Referral, Refer::Referral]
+```
+
+This returns a list of `Refer::Referral` objects.
+
+##### Accessing Referral
+
+To access a user's referral, you can use the `referral` association:
+
+```ruby
+user.referral #=> Refer::Referral
+```
+
+To access a user's referrer, you can use `referrer`:
+```ruby
+user.referrer #=> User that referred this User
+```
+
 ## Contributing
 If you have an issue you'd like to submit, please do so using the issue tracker in GitHub. In order for us to help you in the best way possible, please be as detailed as you can.
 
