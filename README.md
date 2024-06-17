@@ -139,6 +139,27 @@ To access a user's referrer, you can use `referrer`:
 ```ruby
 user.referrer #=> User that referred this User
 ```
+## Refer with Devise
+
+To use Refer with Devise, you'll need to customize the Devise controller to track the referral after a successful registration.
+
+We can do this by telling Devise to use a custom controller in the routes and hooking into the `create` action to track the referral.
+
+```ruby
+# config/routes.rb
+devise_for :users, controllers: { registrations: "users/registrations" }
+```
+
+```ruby
+# app/controllers/users/registrations_controller.rb
+class Users::RegistrationsController < Devise::RegistrationsController
+  def create
+    super do
+      refer resource if resource.persisted?
+    end
+  end
+end
+```
 
 ## Providing Referral Rewards
 
