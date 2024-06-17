@@ -1,5 +1,11 @@
 ### Unreleased
 
+### 0.2.1
+
+* Change migrations to use Rails 6.1 version for compatibility
+
+### 0.2.0
+
 * Add `set_referral_cookie` controller method
 * Add `rails g refer:install` generator to inject `set_referral_cookie`
 
