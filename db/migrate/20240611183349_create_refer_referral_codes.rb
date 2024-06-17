@@ -1,4 +1,4 @@
-class CreateReferReferralCodes < ActiveRecord::Migration[7.2]
+class CreateReferReferralCodes < ActiveRecord::Migration[6.1]
   def change
     create_table :refer_referral_codes do |t|
       t.belongs_to :referrer, polymorphic: true, null: false
