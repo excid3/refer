@@ -18,6 +18,18 @@ class Refer::ReferralCodeTest < ActiveSupport::TestCase
   end
 
   test "generates referral codes automatically" do
+    original_generator = Refer.code_generator
+    Refer.code_generator = ->(referrer) { SecureRandom.alphanumeric(8) }
     assert_not_nil users(:one).referral_codes.create!.code
+  ensure
+    Refer.code_generator = original_generator
+  end
+
+  test "does not generate referral code automatically if empty generator config" do
+    original_generator = Refer.code_generator
+    Refer.code_generator = nil
+    assert_nil users(:one).referral_codes.create.code
+  ensure
+    Refer.code_generator = original_generator
   end
 end
