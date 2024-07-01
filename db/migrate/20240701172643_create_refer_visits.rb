@@ -9,5 +9,8 @@ class CreateReferVisits < ActiveRecord::Migration[7.2]
 
       t.timestamps
     end
+
+    add_column :refer_referral_codes, :referrals_count, :integer, default: 0
+    add_column :refer_referral_codes, :visits_count, :integer, default: 0
   end
 end
