@@ -16,4 +16,8 @@ class Refer::ReferralCodeTest < ActiveSupport::TestCase
       users(:one).destroy
     end
   end
+
+  test "generates referral codes automatically" do
+    assert_not_nil users(:one).referral_codes.create!.code
+  end
 end

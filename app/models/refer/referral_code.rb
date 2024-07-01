@@ -5,8 +5,8 @@ module Refer
 
     validates :code, presence: true, uniqueness: true
 
-    before_create if: -> { Refer.code_generator } do
-      Refer.code_generator.call(referrer)
+    before_validation if: -> { Refer.code_generator } do
+      self.code = Refer.code_generator.call(referrer)
     end
 
     def to_param

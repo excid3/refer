@@ -1,5 +1,7 @@
 ### Unreleased
 
+* Fix referral code default generator
+
 ### 0.2.1
 
 * Change migrations to use Rails 6.1 version for compatibility
