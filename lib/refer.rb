@@ -9,6 +9,7 @@ module Refer
   config_accessor :cookie_length, default: 30.days
   config_accessor :cookie_name, default: :refer_code
   config_accessor :param_name, default: :ref
+  config_accessor :overwrite_cookie, default: true
 
   class Error < StandardError; end
   class AlreadyReferred < Error; end
