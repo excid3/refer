@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  referral_code: one
+  ip: MyString
+  user_agent: MyText
+  referrer: MyText
+  referring_domain: MyString
+
+two:
+  referral_code: two
+  ip: MyString
+  user_agent: MyText
+  referrer: MyText
+  referring_domain: MyString
