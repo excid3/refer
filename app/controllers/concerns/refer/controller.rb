@@ -15,10 +15,11 @@ module Refer
     private
 
     def set_refer_cookie(param_name: Refer.param_name, cookie_name: Refer.cookie_name)
-      if (code = params[param_name]) && (Refer.overwrite_cookie || cookies[cookie_name].blank?)
-        cookies[cookie_name] = Refer.cookie(code)
-        ReferralCode.find_by(code: code)&.track_visit(request)
-      end
+      code = params[param_name]
+      return if code.blank?
+
+      cookies[cookie_name] = Refer.cookie(code) if Refer.overwrite_cookie || cookies[cookie_name].blank?
+      ReferralCode.find_by(code: code)&.track_visit(request)
     end
   end
 end
