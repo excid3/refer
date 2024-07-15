@@ -17,4 +17,11 @@ class ReferralIntegrationTest < ActionDispatch::IntegrationTest
     get root_path(ref: referral_code)
     assert_equal referral_code.to_param, cookies[Refer.cookie_name]
   end
+
+  test "tracks visits" do
+    referral_code = refer_referral_codes(:one)
+    assert_difference "referral_code.reload.visits_count" do
+      get root_path(ref: referral_code)
+    end
+  end
 end

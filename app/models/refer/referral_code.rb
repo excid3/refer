@@ -2,6 +2,7 @@ module Refer
   class ReferralCode < ApplicationRecord
     belongs_to :referrer, polymorphic: true
     has_many :referrals, dependent: :nullify
+    has_many :visits, dependent: :delete_all
 
     validates :code, presence: true, uniqueness: true
 
@@ -11,6 +12,10 @@ module Refer
 
     def to_param
       code
+    end
+
+    def track_visit(request)
+      visits.from_request(request).save
     end
   end
 end
