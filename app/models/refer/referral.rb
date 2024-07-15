@@ -7,5 +7,9 @@ module Refer
     before_validation do
       self.referrer = referral_code&.referrer
     end
+
+    def complete!(**attributes)
+      update attributes.with_defaults(completed_at: Time.current)
+    end
   end
 end

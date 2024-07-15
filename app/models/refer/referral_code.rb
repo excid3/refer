@@ -15,13 +15,7 @@ module Refer
     end
 
     def track_visit(request)
-      referrer = request.referer
-      visits.create(
-        ip: request.ip,
-        user_agent: request.user_agent,
-        referrer: referrer,
-        referring_domain: (URI.parse(referrer).try(:host) rescue nil)
-      )
+      visits.from_request(request).save
     end
   end
 end

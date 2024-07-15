@@ -19,7 +19,7 @@ module Refer
       return if code.blank?
 
       cookies[cookie_name] = Refer.cookie(code) if Refer.overwrite_cookie || cookies[cookie_name].blank?
-      ReferralCode.find_by(code: code)&.track_visit(request)
+      ReferralCode.find_by(code: code)&.track_visit(request) if Refer.track_visits
     end
   end
 end

@@ -10,6 +10,8 @@ module Refer
   config_accessor :cookie_name, default: :refer_code
   config_accessor :param_name, default: :ref
   config_accessor :overwrite_cookie, default: true
+  config_accessor :track_visits, default: true
+  config_accessor :mask_ips, default: true
 
   class Error < StandardError; end
   class AlreadyReferred < Error; end
@@ -33,6 +35,20 @@ module Refer
       value: code,
       expires: Refer.cookie_length.from_now
     }
+  end
+
+  # From Ahoy gem: https://github.com/ankane/ahoy/blob/v5.1.0/lib/ahoy.rb#L133-L142
+  def self.mask_ip(ip)
+    return ip unless mask_ips
+
+    addr = IPAddr.new(ip)
+    if addr.ipv4?
+      # set last octet to 0
+      addr.mask(24).to_s
+    else
+      # set last 80 bits to zeros
+      addr.mask(48).to_s
+    end
   end
 end
 
