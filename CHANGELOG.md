@@ -1,5 +1,8 @@
 ### Unreleased
 
+* Add visit tracking #5
+* Configurable referral cookie overwrites #4
+  Choose between the original referral code or the most recent referral code to receive the referral
 * Fix referral code default generator
 
 ### 0.2.1
