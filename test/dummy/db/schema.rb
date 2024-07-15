@@ -19,8 +19,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_01_172643) do
     t.datetime "updated_at", null: false
     t.integer "referrals_count", default: 0
     t.integer "visits_count", default: 0
-    t.index ["code"], name: "index_refer_referral_codes_on_code", unique: true
-    t.index ["referrer_type", "referrer_id"], name: "index_refer_referral_codes_on_referrer"
+    t.index [ "code" ], name: "index_refer_referral_codes_on_code", unique: true
+    t.index [ "referrer_type", "referrer_id" ], name: "index_refer_referral_codes_on_referrer"
   end
 
   create_table "refer_referrals", force: :cascade do |t|
@@ -32,9 +32,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_01_172643) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "completed_at"
-    t.index ["referee_type", "referee_id"], name: "index_refer_referrals_on_referee"
-    t.index ["referral_code_id"], name: "index_refer_referrals_on_referral_code_id"
-    t.index ["referrer_type", "referrer_id"], name: "index_refer_referrals_on_referrer"
+    t.index [ "referee_type", "referee_id" ], name: "index_refer_referrals_on_referee"
+    t.index [ "referral_code_id" ], name: "index_refer_referrals_on_referral_code_id"
+    t.index [ "referrer_type", "referrer_id" ], name: "index_refer_referrals_on_referrer"
   end
 
   create_table "refer_visits", force: :cascade do |t|
@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_01_172643) do
     t.string "referring_domain"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["referral_code_id"], name: "index_refer_visits_on_referral_code_id"
+    t.index [ "referral_code_id" ], name: "index_refer_visits_on_referral_code_id"
   end
 
   create_table "users", force: :cascade do |t|

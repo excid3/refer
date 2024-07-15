@@ -2,7 +2,7 @@ module Refer
   class Visit < ApplicationRecord
     belongs_to :referral_code, counter_cache: true
 
-    normalizes :ip, with: ->{ Refer.mask_ip(_1) }
+    normalizes :ip, with: -> { Refer.mask_ip(_1) }
 
     def self.from_request(request)
       new(
