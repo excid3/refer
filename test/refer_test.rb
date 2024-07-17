@@ -47,4 +47,26 @@ class ReferTest < ActiveSupport::TestCase
   test "referrer" do
     assert_equal users(:one), users(:two).referrer
   end
+
+  test "referral_completed callback" do
+    old_callback = Refer.referral_completed
+    referral = refer_referrals(:one)
+    assert_not referral.completed_at?
+
+    completed = nil
+    Refer.referral_completed = ->(referral) {
+      completed = referral
+    }
+
+    # Called the first time a referral is completed
+    referral.complete!
+    assert_equal referral, completed
+
+    # Does not get called second time because referral was already completed
+    completed = nil
+    referral.complete!
+    assert_nil completed
+  ensure
+    Refer.referral_completed = old_callback
+  end
 end

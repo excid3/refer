@@ -12,6 +12,7 @@ module Refer
   config_accessor :overwrite_cookie, default: true
   config_accessor :track_visits, default: true
   config_accessor :mask_ips, default: true
+  config_accessor :referral_completed
 
   class Error < StandardError; end
   class AlreadyReferred < Error; end

@@ -1,5 +1,10 @@
 ### Unreleased
 
+### 0.5.0
+
+* Add `Refer.referral_completed = ->(referral) { }` callback that runs when a referral is marked as completed
+* `referral.complete!` does nothing if already completed
+
 ### 0.4.0
 
 * Add `completed` scope to `Refer::Referral`

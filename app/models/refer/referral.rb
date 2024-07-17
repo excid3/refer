@@ -11,7 +11,10 @@ module Refer
     end
 
     def complete!(**attributes)
+      return if completed_at?
+
       update attributes.with_defaults(completed_at: Time.current)
+      Refer.referral_completed&.call(self)
     end
   end
 end

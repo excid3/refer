@@ -30,4 +30,17 @@ class Refer::ReferralTest < ActiveSupport::TestCase
       assert_equal 1.hour.ago, referral.completed_at
     end
   end
+
+  test "complete! doesn't override previous completion" do
+    referral = refer_referrals(:one)
+    assert_nil referral.completed_at
+
+    referral.complete!
+
+    travel_to Time.current + 1.hour do
+      assert_no_difference "referral.completed_at" do
+        referral.complete!
+      end
+    end
+  end
 end
