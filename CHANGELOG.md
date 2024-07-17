@@ -1,5 +1,11 @@
 ### Unreleased
 
+### 0.4.0
+
+* Add `completed` scope to `Refer::Referral`
+
+### 0.3.0
+
 * Add visit tracking #5
 * Configurable referral cookie overwrites #4
   Choose between the original referral code or the most recent referral code to receive the referral
