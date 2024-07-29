@@ -27,7 +27,7 @@ bin/rails db:migrate
 
 ## 🧑‍💻 Usage
 
-Refer adds a models to your Rails application for tracking referrals and referral codes.
+Refer adds a model to your Rails application for tracking referrals and referral codes.
 
 To track referrals, you'll need to
 
