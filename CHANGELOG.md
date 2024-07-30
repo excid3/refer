@@ -1,5 +1,9 @@
 ### Unreleased
 
+### 0.5.1
+
+* Fixes HasReferrals constant lookup
+
 ### 0.5.0
 
 * Add `Refer.referral_completed = ->(referral) { }` callback that runs when a referral is marked as completed
