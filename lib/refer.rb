@@ -5,6 +5,9 @@ require "securerandom"
 module Refer
   include ActiveSupport::Configurable
 
+  autoload :HasReferrals, "refer/has_referrals"
+  autoload :Model, "refer/model"
+
   config_accessor :code_generator, default: ->(referrer) { SecureRandom.alphanumeric(8) }
   config_accessor :cookie_length, default: 30.days
   config_accessor :cookie_name, default: :refer_code
@@ -51,14 +54,6 @@ module Refer
       addr.mask(48).to_s
     end
   end
-end
-
-ActiveSupport.on_load(:active_record) do
-  include Refer::HasReferrals
-end
-
-ActiveSupport.on_load(:action_controller) do
-  include Refer::Controller
 end
 
 ActiveSupport.run_load_hooks(:refer, Refer)
