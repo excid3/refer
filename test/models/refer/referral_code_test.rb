@@ -32,4 +32,10 @@ class Refer::ReferralCodeTest < ActiveSupport::TestCase
   ensure
     Refer.code_generator = original_generator
   end
+
+  test "does not generate referral code automatically if using a custom code" do
+    Refer.code_generator = ->(referrer) { SecureRandom.alphanumeric(8) }
+    custom_referral = users(:one).referral_codes.create(code: 'custom')
+    assert_equal custom_referral.code, 'custom'
+  end
 end
