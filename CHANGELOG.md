@@ -1,5 +1,9 @@
 ### Unreleased
 
+### 0.5.2
+
+* Move controller constant to lib
+
 ### 0.5.1
 
 * Fixes HasReferrals constant lookup
