@@ -5,6 +5,7 @@ require "securerandom"
 module Refer
   include ActiveSupport::Configurable
 
+  autoload :Controller, "refer/controller"
   autoload :HasReferrals, "refer/has_referrals"
   autoload :Model, "refer/model"
 
