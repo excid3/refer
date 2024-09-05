@@ -1,5 +1,9 @@
 ### Unreleased
 
+### 0.5.3
+
+* Only set ReferralCode#code if it is blank #20
+
 ### 0.5.2
 
 * Move controller constant to lib

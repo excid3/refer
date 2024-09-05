@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    refer (0.5.2)
+    refer (0.5.3)
       rails (>= 6.1.0)
 
 GEM
