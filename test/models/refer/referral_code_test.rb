@@ -1,4 +1,6 @@
 require "test_helper"
+require "minitest/mock"
+
 
 class Refer::ReferralCodeTest < ActiveSupport::TestCase
   test "deleting referral code doesn't delete referral" do
@@ -18,24 +20,21 @@ class Refer::ReferralCodeTest < ActiveSupport::TestCase
   end
 
   test "generates referral codes automatically" do
-    original_generator = Refer.code_generator
-    Refer.code_generator = ->(referrer) { SecureRandom.alphanumeric(8) }
-    assert_not_nil users(:one).referral_codes.create!.code
-  ensure
-    Refer.code_generator = original_generator
+    Refer.stub :code_generator, ->(referrer) { SecureRandom.alphanumeric(8) } do
+      assert_not_nil users(:one).referral_codes.create!.code
+    end
   end
 
   test "does not generate referral code automatically if empty generator config" do
-    original_generator = Refer.code_generator
-    Refer.code_generator = nil
-    assert_nil users(:one).referral_codes.create.code
-  ensure
-    Refer.code_generator = original_generator
+    Refer.stub :code_generator, nil do
+      assert_nil users(:one).referral_codes.create.code
+    end
   end
 
   test "does not generate referral code automatically if using a custom code" do
-    Refer.code_generator = ->(referrer) { SecureRandom.alphanumeric(8) }
-    custom_referral = users(:one).referral_codes.create(code: "custom")
-    assert_equal custom_referral.code, "custom"
+    Refer.stub :code_generator, ->(referrer) { SecureRandom.alphanumeric(8) } do
+      custom_referral = users(:one).referral_codes.create(code: "custom")
+      assert_equal custom_referral.code, "custom"
+    end
   end
 end
