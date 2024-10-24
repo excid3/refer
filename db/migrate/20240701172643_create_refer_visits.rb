@@ -1,4 +1,4 @@
-class CreateReferVisits < ActiveRecord::Migration[7.2]
+class CreateReferVisits < ActiveRecord::Migration[6.1]
   def change
     create_table :refer_visits do |t|
       t.belongs_to :referral_code, null: false, foreign_key: { to_table: :refer_referral_codes }
