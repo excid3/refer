@@ -1,5 +1,7 @@
 ### Unreleased
 
+### 1.0.0
+
 * Require Rails 7.1+ for `normalizes` support
 
 ### 0.5.3
