@@ -12,6 +12,8 @@ module Refer
       Refer.refer(code: cookies[cookie_name], referee: referee)
     end
 
+    private
+    
     def set_refer_cookie(param_name: Refer.param_name, cookie_name: Refer.cookie_name, code: nil, track_visit: Refer.track_visits)
       code ||= params[param_name]
       return if code.blank?
