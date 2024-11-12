@@ -15,7 +15,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ruby-3.3.2
+          ruby-version: .ruby-version
           bundler-cache: true
 
       - name: Lint code for consistent style
@@ -23,13 +23,14 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        gemfile:
+          - rails_7.1
+          - rails_7.2
+          - rails_8.0
+          - rails_main
 
-    # services:
-    #  redis:
-    #    image: redis
-    #    ports:
-    #      - 6379:6379
-    #    options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - name: Install packages
         run: sudo apt-get update && sudo apt-get install --no-install-recommends -y google-chrome-stable curl libjemalloc2 libsqlite3-0 libvips libsqlite3-0
@@ -40,7 +41,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ruby-3.3.2
+          ruby-version: .ruby-version
           bundler-cache: true
 
       - name: Run tests
