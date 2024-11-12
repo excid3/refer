@@ -1,5 +1,10 @@
 ### Unreleased
 
+### 1.0.1
+
+* Use `as:` for polymorphic associations
+* Add tests against Rails 7.1, 7.2, 8.0 and Rails main
+
 ### 1.0.0
 
 * Require Rails 7.1+ for `normalizes` support

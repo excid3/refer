@@ -99,7 +99,7 @@ GIT
 PATH
   remote: ..
   specs:
-    refer (1.0.0)
+    refer (1.0.1)
       rails (>= 7.1.0)
 
 GEM
