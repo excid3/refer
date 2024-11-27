@@ -48,6 +48,10 @@ class ReferTest < ActiveSupport::TestCase
     assert_equal users(:one), users(:two).referrer
   end
 
+  test "referrer when nil" do
+    assert_nil users(:new).referrer
+  end
+
   test "referral_completed callback" do
     old_callback = Refer.referral_completed
     referral = refer_referrals(:one)
