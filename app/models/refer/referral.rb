@@ -10,6 +10,14 @@ module Refer
       self.referrer = referral_code&.referrer
     end
 
+    validate :blocks_self_referral
+
+    def blocks_self_referral
+      if referrer == referee
+        errors.add(:referee_id, "You can't refer yourself")
+      end
+    end
+
     def complete!(**attributes)
       return if completed_at?
 
