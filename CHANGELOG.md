@@ -1,5 +1,9 @@
 ### Unreleased
 
+### 1.0.2
+
+* Ensure self-referrals aren't allowed #47
+
 ### 1.0.1
 
 * Use `as:` for polymorphic associations
