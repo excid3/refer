@@ -10,12 +10,10 @@ module Refer
       self.referrer = referral_code&.referrer
     end
 
-    validate :blocks_self_referral
+    validate :ensure_not_self_referral
 
-    def blocks_self_referral
-      if referrer == referee
-        errors.add(:referee_id, "You can't refer yourself")
-      end
+    def ensure_not_self_referral
+      errors.add(:base, "Self-referrals are not allowed") if referrer == referee
     end
 
     def complete!(**attributes)

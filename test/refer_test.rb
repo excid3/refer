@@ -21,6 +21,10 @@ class ReferTest < ActiveSupport::TestCase
     assert_no_difference "Refer::Referral.count" do
       Refer.refer(code: refer_referral_codes(:one).code, referee: users(:one))
     end
+
+    assert_raises ActiveRecord::RecordInvalid, "Validation failed: Self-referrals are not allowed" do
+      Refer.refer!(code: refer_referral_codes(:one).code, referee: users(:one))
+    end
   end
 
   test "refer already referred" do
