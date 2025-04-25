@@ -176,6 +176,25 @@ To provide a reward X days after a successful referral, you can use a schedule j
 
 We recommend keeping records for each reward given to a referral so you can limit rewards.
 
+## Customizing Models
+
+You can add features to Refer's models by using lazy load hooks.
+
+```ruby
+# config/initializers/refer.rb
+ActiveSupport.on_load :refer_referral do
+  # Add features to Refer::Referral model
+end
+
+ActiveSupport.on_load :refer_referral_code do
+  # Add features to Refer::ReferralCode model
+end
+
+ActiveSupport.on_load :refer_visit do
+  # Add features to Refer::Visit model
+end
+```
+
 ## 🙏 Contributing
 If you have an issue you'd like to submit, please do so using the issue tracker in GitHub. In order for us to help you in the best way possible, please be as detailed as you can.
 

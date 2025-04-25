@@ -14,3 +14,5 @@ module Refer
     end
   end
 end
+
+ActiveSupport.run_load_hooks :refer_visit, Refer::Visit

@@ -19,3 +19,5 @@ module Refer
     end
   end
 end
+
+ActiveSupport.run_load_hooks :refer_referral_code, Refer::ReferralCode

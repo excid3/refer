@@ -1,5 +1,7 @@
 ### Unreleased
 
+* Add lazy load hooks for models #59
+
 ### 1.0.2
 
 * Ensure self-referrals aren't allowed #47

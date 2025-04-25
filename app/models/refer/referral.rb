@@ -24,3 +24,5 @@ module Refer
     end
   end
 end
+
+ActiveSupport.run_load_hooks :refer_referral, Refer::Referral
