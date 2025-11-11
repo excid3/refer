@@ -3,20 +3,18 @@ require "refer/engine"
 require "securerandom"
 
 module Refer
-  include ActiveSupport::Configurable
-
   autoload :Controller, "refer/controller"
   autoload :HasReferrals, "refer/has_referrals"
   autoload :Model, "refer/model"
 
-  config_accessor :code_generator, default: ->(referrer) { SecureRandom.alphanumeric(8) }
-  config_accessor :cookie_length, default: 30.days
-  config_accessor :cookie_name, default: :refer_code
-  config_accessor :param_name, default: :ref
-  config_accessor :overwrite_cookie, default: true
-  config_accessor :track_visits, default: true
-  config_accessor :mask_ips, default: true
-  config_accessor :referral_completed
+  mattr_accessor :code_generator, default: ->(referrer) { SecureRandom.alphanumeric(8) }
+  mattr_accessor :cookie_length, default: 30.days
+  mattr_accessor :cookie_name, default: :refer_code
+  mattr_accessor :param_name, default: :ref
+  mattr_accessor :overwrite_cookie, default: true
+  mattr_accessor :track_visits, default: true
+  mattr_accessor :mask_ips, default: true
+  mattr_accessor :referral_completed
 
   class Error < StandardError; end
   class AlreadyReferred < Error; end
