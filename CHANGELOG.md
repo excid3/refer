@@ -1,5 +1,11 @@
 ### Unreleased
 
+### 1.0.4
+
+* Remove deprecated `ActiveSupport::Configurable` and replace with mattr_accessor for global config options
+
+### 1.0.3
+
 * Add lazy load hooks for models #59
 
 ### 1.0.2
