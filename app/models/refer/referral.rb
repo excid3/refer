@@ -8,15 +8,14 @@ module Refer
 
     validate :ensure_not_self_referral
 
+    after_update_commit -> { Refer.referral_completed&.call(self) }, if: -> { saved_change_to_completed_at? && completed_at? }
+
     def ensure_not_self_referral
       errors.add(:base, "Self-referrals are not allowed") if referrer == referee
     end
 
     def complete!(**attributes)
-      if !completed_at? && update(attributes.with_defaults(completed_at: Time.current))
-        Refer.referral_completed&.call(self)
-        true
-      end
+      update(attributes.with_defaults(completed_at: Time.current)) unless completed_at?
     end
   end
 end
