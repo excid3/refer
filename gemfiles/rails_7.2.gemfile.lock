@@ -123,7 +123,6 @@ GEM
     marcel (1.2.1)
     mini_mime (1.1.5)
     minitest (5.27.0)
-    minitest-mock (5.27.0)
     net-imap (0.6.7)
       date
       net-protocol
@@ -260,7 +259,6 @@ PLATFORMS
 DEPENDENCIES
   appraisal
   minitest (< 6)
-  minitest-mock
   puma
   rails (~> 7.2.0)
   refer!

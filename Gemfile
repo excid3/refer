@@ -16,5 +16,3 @@ gem "rubocop-rails-omakase", require: false
 # gem "debug", ">= 1.0.0"
 
 gem "appraisal"
-
-gem "minitest-mock"

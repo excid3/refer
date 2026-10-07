@@ -7,7 +7,6 @@ gem "sqlite3"
 gem "sprockets-rails"
 gem "rubocop-rails-omakase", require: false
 gem "appraisal"
-gem "minitest-mock"
 gem "rails", "~> 8.1.0.beta1"
 
 gemspec path: "../"
