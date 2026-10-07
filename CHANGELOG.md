@@ -1,5 +1,7 @@
 ### Unreleased
 
+### 1.1.0
+
 * Call `Refer.referral_completed` after the transaction commits, so rolled back completions don't trigger rewards. It now also fires when `completed_at` is set through a regular `update`
 * Fix `Referral#complete!` failing (while still calling `referral_completed`) after the referral code was destroyed
 * Allow creating referrals without a referral code by setting `referrer` directly
