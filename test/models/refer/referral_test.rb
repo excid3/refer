@@ -43,4 +43,27 @@ class Refer::ReferralTest < ActiveSupport::TestCase
       end
     end
   end
+
+  test "can be created without a referral code" do
+    referral = Refer::Referral.create!(referrer: users(:one), referee: users(:new))
+    assert_equal users(:one), referral.referrer
+  end
+
+  test "can be completed after referral code is destroyed" do
+    referral = refer_referrals(:one)
+    referral.referral_code.destroy
+    referral.reload
+
+    assert referral.complete!
+    assert_equal users(:one), referral.referrer
+  end
+
+  test "complete! does not call callback if update fails" do
+    referral = refer_referrals(:one)
+    referral.referee = users(:one) # Self-referral, invalid
+
+    Refer.with(referral_completed: ->(_) { flunk "referral_completed should not be called" }) do
+      assert_not referral.complete!
+    end
+  end
 end

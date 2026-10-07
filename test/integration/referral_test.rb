@@ -24,4 +24,12 @@ class ReferralIntegrationTest < ActionDispatch::IntegrationTest
       get root_path(ref: referral_code)
     end
   end
+
+  test "ignores non-string referral params" do
+    [ { x: "1" }, [ "chris", "bob" ] ].each do |ref|
+      get root_path, params: { ref: ref }
+      assert_response :ok
+      assert_nil cookies[Refer.cookie_name]
+    end
+  end
 end

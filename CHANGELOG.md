@@ -1,5 +1,14 @@
 ### Unreleased
 
+* Fix `Referral#complete!` failing (while still calling `referral_completed`) after the referral code was destroyed
+* Allow creating referrals without a referral code by setting `referrer` directly
+* Only call `Refer.referral_completed` if the referral was successfully updated
+* Ignore non-string referral params like `?ref[x]=1` instead of raising an error
+* Add a unique index so a referee can only be referred once, even with concurrent requests. Creating a duplicate referral now raises `ActiveRecord::RecordNotUnique`; `Refer.refer` returns `nil` and `Refer.refer!` raises `Refer::AlreadyReferred`
+* `Refer::AlreadyReferred.new` now takes the referee instead of a message
+
+  Run `bin/rails refer:install:migrations && bin/rails db:migrate` to add the index. Remove any duplicate referrals for the same referee first or the migration will fail.
+
 ### 1.0.4
 
 * Remove deprecated `ActiveSupport::Configurable` and replace with mattr_accessor for global config options

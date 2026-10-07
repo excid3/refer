@@ -1,5 +1,6 @@
 require "refer/version"
 require "refer/engine"
+require "ipaddr"
 require "securerandom"
 
 module Refer
@@ -17,7 +18,9 @@ module Refer
   mattr_accessor :referral_completed
 
   class Error < StandardError; end
-  class AlreadyReferred < Error; end
+  class AlreadyReferred < Error
+    def initialize(referee) = super("#{referee} has already been referred")
+  end
 
   def self.referred?(referee)
     Referral.where(referee: referee).exists?
@@ -26,11 +29,15 @@ module Refer
   def self.refer(code:, referee:)
     return if referred?(referee)
     ReferralCode.find_by(code: code)&.referrals&.create(referee: referee)
+  rescue ActiveRecord::RecordNotUnique
+    nil
   end
 
   def self.refer!(code:, referee:)
-    raise AlreadyReferred, "#{referee} has already been referred" if referred?(referee)
+    raise AlreadyReferred, referee if referred?(referee)
     ReferralCode.find_by!(code: code).referrals.create!(referee: referee)
+  rescue ActiveRecord::RecordNotUnique
+    raise AlreadyReferred, referee
   end
 
   def self.cookie(code)
