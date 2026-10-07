@@ -66,4 +66,15 @@ class Refer::ReferralTest < ActiveSupport::TestCase
       assert_not referral.complete!
     end
   end
+
+  test "referral_completed is not called if the transaction rolls back" do
+    referral = refer_referrals(:one)
+
+    Refer.with(referral_completed: ->(_) { flunk "referral_completed should not be called" }) do
+      Refer::Referral.transaction do
+        referral.complete!
+        raise ActiveRecord::Rollback
+      end
+    end
+  end
 end
