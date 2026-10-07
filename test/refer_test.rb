@@ -37,6 +37,20 @@ class ReferTest < ActiveSupport::TestCase
     end
   end
 
+  test "refer returns nil when losing the race" do
+    without_referred_check do
+      assert_nil Refer.refer(code: refer_referral_codes(:one).code, referee: users(:two))
+    end
+  end
+
+  test "refer! raises AlreadyReferred when losing the race" do
+    without_referred_check do
+      assert_raises Refer::AlreadyReferred do
+        Refer.refer!(code: refer_referral_codes(:one).code, referee: users(:two))
+      end
+    end
+  end
+
   test "referred?" do
     assert Refer.referred?(users(:two))
     assert_not Refer.referred?(users(:new))
@@ -63,24 +77,30 @@ class ReferTest < ActiveSupport::TestCase
   end
 
   test "referral_completed callback" do
-    old_callback = Refer.referral_completed
     referral = refer_referrals(:one)
     assert_not referral.completed_at?
 
     completed = nil
-    Refer.referral_completed = ->(referral) {
-      completed = referral
-    }
+    Refer.with(referral_completed: ->(referral) { completed = referral }) do
+      # Called the first time a referral is completed
+      referral.complete!
+      assert_equal referral, completed
 
-    # Called the first time a referral is completed
-    referral.complete!
-    assert_equal referral, completed
+      # Does not get called second time because referral was already completed
+      completed = nil
+      referral.complete!
+      assert_nil completed
+    end
+  end
 
-    # Does not get called second time because referral was already completed
-    completed = nil
-    referral.complete!
-    assert_nil completed
+  private
+
+  # Simulates another request creating the referral between the check and the insert
+  def without_referred_check
+    original = Refer.method(:referred?)
+    Refer.define_singleton_method(:referred?) { |_referee| false }
+    yield
   ensure
-    Refer.referral_completed = old_callback
+    Refer.define_singleton_method(:referred?, original)
   end
 end

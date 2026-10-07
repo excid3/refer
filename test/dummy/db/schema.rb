@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_07_01_172643) do
+ActiveRecord::Schema[7.2].define(version: 2026_10_07_000000) do
   create_table "refer_referral_codes", force: :cascade do |t|
     t.string "referrer_type", null: false
     t.integer "referrer_id", null: false
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_01_172643) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "completed_at"
-    t.index [ "referee_type", "referee_id" ], name: "index_refer_referrals_on_referee"
+    t.index [ "referee_type", "referee_id" ], name: "index_refer_referrals_on_referee", unique: true
     t.index [ "referral_code_id" ], name: "index_refer_referrals_on_referral_code_id"
     t.index [ "referrer_type", "referrer_id" ], name: "index_refer_referrals_on_referrer"
   end
